@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace P5
 {
@@ -11,6 +12,23 @@ namespace P5
         public const string EMPTY_DISCOVERER_ERROR = "A Discoverer is required.";
 
         private static List<Issue> _Issues = new List<Issue>();
+
+        public FakeIssueRepository()
+        {
+            _Issues = new List<Issue>();
+            _Issues.Add(new Issue
+            {
+                Id = 1,
+                ProjectId = 1,
+                Title = "asdf",
+                DiscoveryDate = DateTime.MinValue,
+                Discoverer = "dave",
+                InitialDescription = "N/A",
+                Component = "asdf",
+                IssueStatusId = 1
+            });
+
+        }
         private string ValidateIssue(Issue issue)
         {
             //The following are placeholders for testing and running purposes
@@ -25,7 +43,26 @@ namespace P5
 
         public string Add(Issue issue)
         {
-            throw new System.NotImplementedException();
+            //int Id = issue.Id;
+            string newIssueName = issue.Title.Trim();
+            if (IsDupliclate(newIssueName))
+            {
+                return "Issue name already exists";
+            }
+            if (newIssueName == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+            int currentMaxId = 0;
+            foreach(Issue l in _Issues)
+            {
+                currentMaxId = l.Id;
+            }
+            ++currentMaxId;
+
+
+            return NO_ERROR;
+
         }
 
         public List<Issue> GetAll(int ProjectId)

@@ -8,13 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Builder
+namespace P5
 {
     public partial class FormModifyIssue : Form
     {
-        public FormModifyIssue()
+        AppUser _CurrentAppUser;
+        int _SelectedProjectId;
+        public FormModifyIssue(AppUser appUser)
         {
             InitializeComponent();
+            _CurrentAppUser = appUser;
+        }
+
+        private void FormModifyIssue_Load(object sender, EventArgs e)
+        {
+            dateTimediscovery.Value = DateTime.Now;
+            dateTimediscovery.Format = DateTimePickerFormat.Custom;
+            dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
+            this.CenterToScreen();
         }
     }
 }

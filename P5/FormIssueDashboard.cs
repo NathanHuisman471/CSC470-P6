@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Builder
+namespace P5
 {
     public partial class FormIssueDashboard : Form
     {
-        public FormIssueDashboard()
+        AppUser _CurrentAppUser;
+        int _SelectedProjectId;
+
+        public FormIssueDashboard(AppUser appUser)
         {
             InitializeComponent();
+            _CurrentAppUser = appUser;
+        }
+
+        private void FormIssueDashboard_Load(object sender, EventArgs e)
+        {
+            this.CenterToScreen();
         }
     }
 }

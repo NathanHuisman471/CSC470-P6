@@ -1,4 +1,4 @@
-﻿namespace Builder
+﻿namespace P5
 {
     partial class FormSelectIssue
     {
@@ -60,6 +60,7 @@
             this.button2.TabIndex = 2;
             this.button2.Text = "Select Issue";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormSelectIssue
             // 
@@ -71,6 +72,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormSelectIssue";
             this.Text = "Select Issue";
+            this.Load += new System.EventHandler(this.FormSelectIssue_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

@@ -1,4 +1,4 @@
-﻿namespace Builder
+﻿namespace P5
 {
     partial class FormIssueDashboard
     {
@@ -91,6 +91,7 @@
             // 
             // button1
             // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.Location = new System.Drawing.Point(161, 378);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -112,6 +113,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormIssueDashboard";
             this.Text = "Issue Dashboard";
+            this.Load += new System.EventHandler(this.FormIssueDashboard_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

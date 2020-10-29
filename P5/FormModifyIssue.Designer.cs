@@ -1,4 +1,4 @@
-﻿namespace Builder
+﻿namespace P5
 {
     partial class FormModifyIssue
     {
@@ -33,8 +33,6 @@
             this.textBoxtitle = new System.Windows.Forms.TextBox();
             this.comboBoxstatus = new System.Windows.Forms.ComboBox();
             this.comboBoxdiscoverer = new System.Windows.Forms.ComboBox();
-            this.comboBoxdiscovery = new System.Windows.Forms.ComboBox();
-            this.listBoxdescription = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -44,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dateTimediscovery = new System.Windows.Forms.DateTimePicker();
+            this.textBoxdescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // textBoxcomponent
@@ -71,7 +71,6 @@
             // 
             // comboBoxstatus
             // 
-            this.comboBoxstatus.Enabled = false;
             this.comboBoxstatus.FormattingEnabled = true;
             this.comboBoxstatus.Location = new System.Drawing.Point(115, 179);
             this.comboBoxstatus.Name = "comboBoxstatus";
@@ -86,22 +85,6 @@
             this.comboBoxdiscoverer.Name = "comboBoxdiscoverer";
             this.comboBoxdiscoverer.Size = new System.Drawing.Size(289, 21);
             this.comboBoxdiscoverer.TabIndex = 27;
-            // 
-            // comboBoxdiscovery
-            // 
-            this.comboBoxdiscovery.FormattingEnabled = true;
-            this.comboBoxdiscovery.Location = new System.Drawing.Point(115, 90);
-            this.comboBoxdiscovery.Name = "comboBoxdiscovery";
-            this.comboBoxdiscovery.Size = new System.Drawing.Size(289, 21);
-            this.comboBoxdiscovery.TabIndex = 26;
-            // 
-            // listBoxdescription
-            // 
-            this.listBoxdescription.FormattingEnabled = true;
-            this.listBoxdescription.Location = new System.Drawing.Point(106, 222);
-            this.listBoxdescription.Name = "listBoxdescription";
-            this.listBoxdescription.Size = new System.Drawing.Size(298, 199);
-            this.listBoxdescription.TabIndex = 25;
             // 
             // button2
             // 
@@ -185,18 +168,36 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "Id: ";
             // 
+            // dateTimediscovery
+            // 
+            this.dateTimediscovery.CustomFormat = "";
+            this.dateTimediscovery.Location = new System.Drawing.Point(115, 93);
+            this.dateTimediscovery.MaxDate = new System.DateTime(2420, 12, 31, 0, 0, 0, 0);
+            this.dateTimediscovery.Name = "dateTimediscovery";
+            this.dateTimediscovery.Size = new System.Drawing.Size(289, 20);
+            this.dateTimediscovery.TabIndex = 32;
+            this.dateTimediscovery.Value = new System.DateTime(2020, 10, 7, 0, 0, 0, 0);
+            // 
+            // textBoxdescription
+            // 
+            this.textBoxdescription.Location = new System.Drawing.Point(115, 222);
+            this.textBoxdescription.Multiline = true;
+            this.textBoxdescription.Name = "textBoxdescription";
+            this.textBoxdescription.Size = new System.Drawing.Size(289, 205);
+            this.textBoxdescription.TabIndex = 33;
+            // 
             // FormModifyIssue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(454, 488);
+            this.Controls.Add(this.textBoxdescription);
+            this.Controls.Add(this.dateTimediscovery);
             this.Controls.Add(this.textBoxcomponent);
             this.Controls.Add(this.textBoxid);
             this.Controls.Add(this.textBoxtitle);
             this.Controls.Add(this.comboBoxstatus);
             this.Controls.Add(this.comboBoxdiscoverer);
-            this.Controls.Add(this.comboBoxdiscovery);
-            this.Controls.Add(this.listBoxdescription);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
@@ -208,6 +209,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormModifyIssue";
             this.Text = "Modify Issue";
+            this.Load += new System.EventHandler(this.FormModifyIssue_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,8 +222,6 @@
         private System.Windows.Forms.TextBox textBoxtitle;
         private System.Windows.Forms.ComboBox comboBoxstatus;
         private System.Windows.Forms.ComboBox comboBoxdiscoverer;
-        private System.Windows.Forms.ComboBox comboBoxdiscovery;
-        private System.Windows.Forms.ListBox listBoxdescription;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label7;
@@ -231,5 +231,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dateTimediscovery;
+        private System.Windows.Forms.TextBox textBoxdescription;
     }
 }
