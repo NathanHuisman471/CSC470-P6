@@ -1,4 +1,6 @@
-﻿namespace P5
+﻿using System.Collections.Generic;
+
+namespace P5
 {
     public interface IIssueRepository
     {

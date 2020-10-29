@@ -1,4 +1,6 @@
-﻿namespace P5
+﻿using System.Collections.Generic;
+
+namespace P5
 {
     public class FakeIssueRepository : IIssueRepository
     {
@@ -11,11 +13,54 @@
         private static List<Issue> _Issues = new List<Issue>();
         private string ValidateIssue(Issue issue)
         {
-
+            //The following are placeholders for testing and running purposes
+            string a = "";
+            return a;
         }
         private bool IsDupliclate(string title)
         {
+            //The following is a placeholder for testing and running purposes
+            return true;
+        }
 
+        public string Add(Issue issue)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Issue> GetAll(int ProjectId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Remove(Issue issue)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public string Modify(Issue issue)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int GetTotalNumberOfIssues(int ProjectId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<string> GetIssuesByMonth(int ProjectId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<string> GetIssuesByDiscoverer(int ProjectId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Issue GetIssueById(int Id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
