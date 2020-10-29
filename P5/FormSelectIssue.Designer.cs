@@ -31,15 +31,31 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiscoveryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discoverer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InitialDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Component = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Title,
+            this.DiscoveryDate,
+            this.Discoverer,
+            this.InitialDescription,
+            this.Component,
+            this.Status});
             this.dataGridView1.Location = new System.Drawing.Point(26, 30);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(723, 272);
+            this.dataGridView1.Size = new System.Drawing.Size(834, 272);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
@@ -62,11 +78,49 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Width = 40;
+            // 
+            // Title
+            // 
+            this.Title.HeaderText = "Title";
+            this.Title.Name = "Title";
+            this.Title.Width = 150;
+            // 
+            // DiscoveryDate
+            // 
+            this.DiscoveryDate.HeaderText = "DiscoveryDate";
+            this.DiscoveryDate.Name = "DiscoveryDate";
+            this.DiscoveryDate.Width = 200;
+            // 
+            // Discoverer
+            // 
+            this.Discoverer.HeaderText = "Discoverer";
+            this.Discoverer.Name = "Discoverer";
+            // 
+            // InitialDescription
+            // 
+            this.InitialDescription.HeaderText = "InitialDescription";
+            this.InitialDescription.Name = "InitialDescription";
+            // 
+            // Component
+            // 
+            this.Component.HeaderText = "Component";
+            this.Component.Name = "Component";
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Status";
+            this.Status.Name = "Status";
+            // 
             // FormSelectIssue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(780, 378);
+            this.ClientSize = new System.Drawing.Size(893, 378);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -83,5 +137,12 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DiscoveryDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discoverer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InitialDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Component;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

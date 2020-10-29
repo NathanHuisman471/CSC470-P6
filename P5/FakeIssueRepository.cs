@@ -20,12 +20,34 @@ namespace P5
             {
                 Id = 1,
                 ProjectId = 1,
-                Title = "asdf",
+                Title = "First Issue",
                 DiscoveryDate = DateTime.MinValue,
-                Discoverer = "dave",
-                InitialDescription = "N/A",
-                Component = "asdf",
+                Discoverer = "Bishop, Dave",
+                InitialDescription = "The first issue ever created.",
+                Component = "FormMain",
                 IssueStatusId = 1
+            });
+            _Issues.Add(new Issue
+            {
+                Id = 2,
+                ProjectId = 1,
+                Title = "Minor Problem",
+                DiscoveryDate = DateTime.MaxValue,
+                Discoverer = "Bishop, Dave",
+                InitialDescription = "This is a minor issue.",
+                Component = "FormCreateProject",
+                IssueStatusId = 2
+            });
+            _Issues.Add(new Issue
+            {
+                Id = 3,
+                ProjectId = 1,
+                Title = "Mediocre Problem",
+                DiscoveryDate = DateTime.Now,
+                Discoverer = "Bishop, Dave",
+                InitialDescription = "This is a medicore issue.",
+                Component = "FormModifyProject",
+                IssueStatusId = 3
             });
 
         }
@@ -67,7 +89,7 @@ namespace P5
 
         public List<Issue> GetAll(int ProjectId)
         {
-            throw new System.NotImplementedException();
+            return _Issues;
         }
 
         public bool Remove(Issue issue)

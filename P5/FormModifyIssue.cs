@@ -26,6 +26,8 @@ namespace P5
             dateTimediscovery.Format = DateTimePickerFormat.Custom;
             dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
             this.CenterToScreen();
+
+
         }
     }
 }

@@ -103,14 +103,14 @@ namespace P5
 
         private void issuesModifyToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser);
+            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser, 1);
             form.ShowDialog();
             form.Dispose();
         }
 
         private void issuesRemoveToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
-            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser);
+            FormSelectIssue form = new FormSelectIssue(_CurrentAppUser, 2);
             form.ShowDialog();
             form.Dispose();
         }
