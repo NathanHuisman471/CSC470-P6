@@ -59,8 +59,15 @@ namespace P5
         }
         private bool IsDupliclate(string title)
         {
-            //The following is a placeholder for testing and running purposes
-            return true;
+            bool isDuplicate = false;
+            foreach(Issue i in _Issues)
+            {
+                if(title == i.Title)
+                {
+                    isDuplicate = true;
+                }
+            }
+            return isDuplicate;
         }
 
         public string Add(Issue issue)
@@ -99,12 +106,45 @@ namespace P5
 
         public string Modify(Issue issue)
         {
-            throw new System.NotImplementedException();
+            if (IsDupliclate(issue.Title))
+            {
+                return "There is already an issue with this title.";
+            }
+            if(issue.Title.Trim() == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+            if(issue.Discoverer.Trim() == "")
+            {
+                return EMPTY_DISCOVERER_ERROR;
+            }
+            // Must also add an if statement for an empty discovery date
+
+            int index = 0;
+            foreach (Issue i in _Issues)
+            {
+                if(i.Id == issue.Id)
+                {
+                    _Issues[index] = issue;
+                    return NO_ERROR;
+                }
+                index++;
+            }
+            return "No issue found.";
+
         }
 
         public int GetTotalNumberOfIssues(int ProjectId)
         {
-            throw new System.NotImplementedException();
+            int total = 0;
+            foreach(Issue issue in _Issues)
+            {
+                if(issue.ProjectId == ProjectId)
+                {
+                    total++;
+                }
+            }
+            return total;
         }
 
         public List<string> GetIssuesByMonth(int ProjectId)

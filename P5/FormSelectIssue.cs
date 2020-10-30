@@ -60,7 +60,7 @@ namespace P5
                     }
                     else
                     {
-                        MessageBox.Show("Error removing project", "Information");
+                        MessageBox.Show("Error removing issue " + issue.Title, "Information");
                     }
                 */
                     Close();
