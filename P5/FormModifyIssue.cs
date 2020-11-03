@@ -13,7 +13,12 @@ namespace P5
     public partial class FormModifyIssue : Form
     {
         AppUser _CurrentAppUser;
-        int _SelectedProjectId;
+        public int _SelectedProjectId = 0;
+
+        FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
+        FakeAppUserRepository userRepository = new FakeAppUserRepository();
+        FakeIssueRepository issueRepository = new FakeIssueRepository();
+        FakeIssueStatusRepository issueStatusRepository = new FakeIssueStatusRepository();
         public FormModifyIssue(AppUser appUser)
         {
             InitializeComponent();
@@ -25,23 +30,31 @@ namespace P5
             dateTimediscovery.Value = DateTime.Now;
             dateTimediscovery.Format = DateTimePickerFormat.Custom;
             dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
-            this.CenterToScreen();
+            foreach (AppUser appUser in userRepository.GetAll())
+            {
+                comboBoxdiscoverer.Items.Add(appUser.LastName + ", " + appUser.FirstName);
+            }
 
+            foreach (IssueStatus issueStatus in issueStatusRepository.GetAll())
+            {
+                comboBoxstatus.Items.Add(issueStatus.Value);
+            }
+            FormSelectIssue selectIssue = new FormSelectIssue(_CurrentAppUser, _SelectedProjectId);
+            MessageBox.Show(Convert.ToString(selectIssue._SelectedIssueId));
+            this.CenterToScreen();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            int newId = Int32.Parse(textBoxid.Text);
+            //int newId = Int32.Parse(textBoxid.Text); is this needed? I'm not sure if we are supposed to modify the id. It is greyed out in the example
             string newIssueTitle = textBoxtitle.Text.Trim();
             string newIssueDiscoverer = comboBoxdiscoverer.Text.Trim();
             string newIssueComponent = textBoxcomponent.Text.Trim();
             string newDescription = textBoxdescription.Text.Trim();
-            string newStatusId = comboBoxstatus.Text.Trim();  //This has to be converted to an int depending on the text
+            int newStatusId = issueStatusRepository.GetIdByStatus(comboBoxstatus.Text);
             DateTime newDate = dateTimediscovery.Value;
-
-            //This is only used for testing purposes before newStatusId is converted to an int, should be removed
-            int tempStatusId = 1;
+            _SelectedProjectId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
 
             if(newIssueTitle == "")
             {
@@ -50,7 +63,7 @@ namespace P5
             }
             FakeIssueRepository issueRepository = new FakeIssueRepository();
             
-            Issue issue = new Issue { Id = newId, ProjectId = _SelectedProjectId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = tempStatusId };
+            Issue issue = new Issue { ProjectId = _SelectedProjectId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
             string result = issueRepository.Modify(issue);
             if (result != FakeIssueRepository.NO_ERROR)
             {

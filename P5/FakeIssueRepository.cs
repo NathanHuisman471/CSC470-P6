@@ -107,7 +107,7 @@ namespace P5
             _Issues.Add(new Issue
             {
                 Id = currentMaxId,
-                ProjectId = 1,
+                ProjectId = issue.ProjectId,
                 Title = issue.Title,
                 DiscoveryDate = issue.DiscoveryDate,
                 Discoverer = issue.Discoverer,

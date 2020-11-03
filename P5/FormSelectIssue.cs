@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,6 +13,7 @@ namespace P5
 {
     public partial class FormSelectIssue : Form
     {
+        public int _SelectedIssueId = 0;
         AppUser _CurrentAppUser;
         int _SelectedProjectId;
         int previousPage;
@@ -21,7 +23,9 @@ namespace P5
             InitializeComponent();
             _CurrentAppUser = appUser;
             previousPage = choice;
+            
         }
+       
 
         private void FormSelectIssue_Load(object sender, EventArgs e)
         {
@@ -34,7 +38,15 @@ namespace P5
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            if(dataGridView1.SelectedRows == null)
+            {
+                MessageBox.Show("A project must be selected.", "Attention");
+            }
+            else
+            {
+                string selectedId = dataGridView1.SelectedRows[0].Cells[0].Value + string.Empty;
+                _SelectedIssueId = Convert.ToInt32(selectedId);
+            }
 
             if (previousPage == 1)
             {

@@ -131,6 +131,7 @@
             // 
             // comboBoxdiscoverer
             // 
+            this.comboBoxdiscoverer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxdiscoverer.FormattingEnabled = true;
             this.comboBoxdiscoverer.Location = new System.Drawing.Point(119, 123);
             this.comboBoxdiscoverer.Name = "comboBoxdiscoverer";
@@ -139,6 +140,7 @@
             // 
             // comboBoxstatus
             // 
+            this.comboBoxstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxstatus.FormattingEnabled = true;
             this.comboBoxstatus.Location = new System.Drawing.Point(119, 180);
             this.comboBoxstatus.Name = "comboBoxstatus";

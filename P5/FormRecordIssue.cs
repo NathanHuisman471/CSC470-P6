@@ -51,6 +51,9 @@ namespace P5
             issue.InitialDescription = textBoxdescription.Text;
             issue.Component = textBoxcomponent.Text;
             issue.IssueStatusId = issueStatusRepository.GetIdByStatus(comboBoxstatus.Text);
+            FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
+            _SelectedProjectId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
+            issue.ProjectId = _SelectedProjectId;
 
             string result = issueRepository.Add(issue);
             if (result == FakeIssueRepository.NO_ERROR)
