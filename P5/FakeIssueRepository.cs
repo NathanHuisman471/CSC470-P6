@@ -174,10 +174,8 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            //var groupedByMonthIssues = _Issues.GroupBy(u => u.DiscoveryDate).Select(grp => grp.ToList()).ToList();
-            //var groupedByMonthIssues = _Issues.GroupBy(p => p.DiscoveryDate).Select(group => new { metric = group.Key, Count = group.Count() }).OrderBy(x => x.metric).ToList();
-            //return groupedByMonthIssues;
-            throw new System.NotImplementedException();
+            //list of issues by id
+
         }
 
         public List<string> GetIssuesByDiscoverer(int ProjectId)

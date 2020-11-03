@@ -104,7 +104,13 @@ namespace P5
         private void issuesModifyToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             FormSelectIssue form = new FormSelectIssue(_CurrentAppUser, 1);
-            form.ShowDialog();
+            DialogResult result = form.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                int selectedIssueId = form._SelectedIssueId;
+                FormModifyIssue modifyIssue = new FormModifyIssue()
+            }
+
             form.Dispose();
         }
 

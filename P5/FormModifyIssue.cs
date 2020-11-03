@@ -13,23 +13,21 @@ namespace P5
     public partial class FormModifyIssue : Form
     {
         AppUser _CurrentAppUser;
-        public int _SelectedProjectId = 0;
+        public int _SelectedIssueId = 0;
 
         FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
         FakeAppUserRepository userRepository = new FakeAppUserRepository();
         FakeIssueRepository issueRepository = new FakeIssueRepository();
         FakeIssueStatusRepository issueStatusRepository = new FakeIssueStatusRepository();
-        public FormModifyIssue(AppUser appUser)
+        public FormModifyIssue(int selectedIssueId)
         {
             InitializeComponent();
-            _CurrentAppUser = appUser;
+            _SelectedIssueId = selectedIssueId;
         }
-
+        
         private void FormModifyIssue_Load(object sender, EventArgs e)
         {
-            dateTimediscovery.Value = DateTime.Now;
-            dateTimediscovery.Format = DateTimePickerFormat.Custom;
-            dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
+            
             foreach (AppUser appUser in userRepository.GetAll())
             {
                 comboBoxdiscoverer.Items.Add(appUser.LastName + ", " + appUser.FirstName);
@@ -39,8 +37,7 @@ namespace P5
             {
                 comboBoxstatus.Items.Add(issueStatus.Value);
             }
-            FormSelectIssue selectIssue = new FormSelectIssue(_CurrentAppUser, _SelectedProjectId);
-            MessageBox.Show(Convert.ToString(selectIssue._SelectedIssueId));
+
             this.CenterToScreen();
 
         }
