@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 
 namespace P5
 {
@@ -82,6 +84,18 @@ namespace P5
             {
                 return EMPTY_TITLE_ERROR;
             }
+            if(issue.Discoverer == "")
+            {
+                return EMPTY_DISCOVERER_ERROR;
+            }
+            if(issue.DiscoveryDate == null)
+            {
+                return EMPTY_DISCOVERY_DATETIME_ERROR;
+            }
+            if(issue.DiscoveryDate > DateTime.Now)
+            {
+                return FUTURE_DISCOVERY_DATETIME_ERROR;
+            }
             int currentMaxId = 0;
             foreach(Issue l in _Issues)
             {
@@ -89,9 +103,20 @@ namespace P5
             }
             ++currentMaxId;
 
+            _Issues = new List<Issue>();
+            _Issues.Add(new Issue
+            {
+                Id = currentMaxId,
+                ProjectId = 1,
+                Title = issue.Title,
+                DiscoveryDate = issue.DiscoveryDate,
+                Discoverer = issue.Discoverer,
+                InitialDescription = issue.InitialDescription,
+                Component = issue.Component,
+                IssueStatusId = issue.IssueStatusId
+            });
 
             return NO_ERROR;
-
         }
 
         public List<Issue> GetAll(int ProjectId)
@@ -149,6 +174,9 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
+            //var groupedByMonthIssues = _Issues.GroupBy(u => u.DiscoveryDate).Select(grp => grp.ToList()).ToList();
+            //var groupedByMonthIssues = _Issues.GroupBy(p => p.DiscoveryDate).Select(group => new { metric = group.Key, Count = group.Count() }).OrderBy(x => x.metric).ToList();
+            //return groupedByMonthIssues;
             throw new System.NotImplementedException();
         }
 

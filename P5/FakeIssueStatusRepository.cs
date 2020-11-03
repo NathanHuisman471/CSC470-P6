@@ -6,6 +6,23 @@ namespace P5
     {
         private static List<IssueStatus> _IssueStatuses = new List<IssueStatus>();
 
+        public FakeIssueStatusRepository()
+        {
+            _IssueStatuses = new List<IssueStatus>();
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 1, Value = "Open" });
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 2, Value = "Assigned" });
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 3, Value = "Fixed" });
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 4, Value = "Closed - Won't Fix" });
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 5, Value = "Closed - Fixed" });
+            _IssueStatuses.Add(new IssueStatus
+            { Id = 6, Value = "Closed - by design" });
+        }
+
         public void Add(int Id, string value)
         {
             throw new System.NotImplementedException();
@@ -13,17 +30,31 @@ namespace P5
 
         public List<IssueStatus> GetAll()
         {
-            throw new System.NotImplementedException();
+            return _IssueStatuses;
         }
 
         public int GetIdByStatus(string value)
         {
-            throw new System.NotImplementedException();
+            foreach(IssueStatus issueStatus in _IssueStatuses)
+            {
+                if(issueStatus.Value == value)
+                {
+                    return issueStatus.Id;
+                }
+            }
+            return 0; //code should never reach this point but all paths need a return
         }
 
         public string GetValueById(int Id)
         {
-            throw new System.NotImplementedException();
+            foreach (IssueStatus issueStatus in _IssueStatuses)
+            {
+                if (issueStatus.Id == Id)
+                {
+                    return issueStatus.Value;
+                }
+            }
+            return null; //code should never reach this point but all paths need a return
         }
     }
 }

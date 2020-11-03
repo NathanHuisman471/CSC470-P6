@@ -36,7 +36,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CreateIssueButton = new System.Windows.Forms.Button();
             this.comboBoxdiscoverer = new System.Windows.Forms.ComboBox();
             this.comboBoxstatus = new System.Windows.Forms.ComboBox();
             this.textBoxtitle = new System.Windows.Forms.TextBox();
@@ -119,18 +119,18 @@
             this.button1.Text = "Cancel";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // CreateIssueButton
             // 
-            this.button2.Location = new System.Drawing.Point(333, 444);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Create Issue";
-            this.button2.UseVisualStyleBackColor = true;
+            this.CreateIssueButton.Location = new System.Drawing.Point(333, 444);
+            this.CreateIssueButton.Name = "CreateIssueButton";
+            this.CreateIssueButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateIssueButton.TabIndex = 8;
+            this.CreateIssueButton.Text = "Create Issue";
+            this.CreateIssueButton.UseVisualStyleBackColor = true;
+            this.CreateIssueButton.Click += new System.EventHandler(this.CreateIssueButton_Click);
             // 
             // comboBoxdiscoverer
             // 
-            this.comboBoxdiscoverer.Enabled = false;
             this.comboBoxdiscoverer.FormattingEnabled = true;
             this.comboBoxdiscoverer.Location = new System.Drawing.Point(119, 123);
             this.comboBoxdiscoverer.Name = "comboBoxdiscoverer";
@@ -197,7 +197,7 @@
             this.Controls.Add(this.textBoxtitle);
             this.Controls.Add(this.comboBoxstatus);
             this.Controls.Add(this.comboBoxdiscoverer);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.CreateIssueButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -224,7 +224,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CreateIssueButton;
         private System.Windows.Forms.ComboBox comboBoxdiscoverer;
         private System.Windows.Forms.ComboBox comboBoxstatus;
         private System.Windows.Forms.TextBox textBoxtitle;
