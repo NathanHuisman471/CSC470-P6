@@ -27,7 +27,7 @@ namespace P5
         
         private void FormModifyIssue_Load(object sender, EventArgs e)
         {
-            
+               
             foreach (AppUser appUser in userRepository.GetAll())
             {
                 comboBoxdiscoverer.Items.Add(appUser.LastName + ", " + appUser.FirstName);
@@ -51,7 +51,7 @@ namespace P5
             string newDescription = textBoxdescription.Text.Trim();
             int newStatusId = issueStatusRepository.GetIdByStatus(comboBoxstatus.Text);
             DateTime newDate = dateTimediscovery.Value;
-            _SelectedProjectId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
+            _SelectedIssueId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
 
             if(newIssueTitle == "")
             {
@@ -60,7 +60,7 @@ namespace P5
             }
             FakeIssueRepository issueRepository = new FakeIssueRepository();
             
-            Issue issue = new Issue { ProjectId = _SelectedProjectId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
+            Issue issue = new Issue { ProjectId = _SelectedIssueId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
             string result = issueRepository.Modify(issue);
             if (result != FakeIssueRepository.NO_ERROR)
             {

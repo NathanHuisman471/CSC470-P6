@@ -51,7 +51,7 @@ namespace P5
             if (previousPage == 1)
             {
                 this.Hide();
-                FormModifyIssue form = new FormModifyIssue(_CurrentAppUser);
+                FormModifyIssue form = new FormModifyIssue(_SelectedIssueId);
                 form.ShowDialog();
                 form.Dispose();
             }

@@ -174,7 +174,7 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            //list of issues by id
+            throw new System.NotImplementedException();
 
         }
 
@@ -185,7 +185,15 @@ namespace P5
 
         public Issue GetIssueById(int Id)
         {
-            throw new System.NotImplementedException();
+            List<Issue> issuesById = new List<Issue>();
+            foreach (Issue issue in _Issues)
+            {
+                if (issue.ProjectId == Id)
+                {
+                    return _Issues.FirstOrDefault(z => z.Id == Id); 
+                }
+            }
+            return null; //probably should check if null on the caller
         }
     }
 }
