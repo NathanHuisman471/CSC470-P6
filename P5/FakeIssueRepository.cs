@@ -24,7 +24,7 @@ namespace P5
                 Id = 1,
                 ProjectId = 1,
                 Title = "First Issue",
-                DiscoveryDate = new DateTime(2020, 2, 1, 9, 30, 34), //I modified these because displaying the min and max value is very difficult in a dateTime box
+                DiscoveryDate = new DateTime(2019, 3, 16, 10, 11, 27), //I modified these because displaying the min and max value is very difficult in a dateTime box
                 Discoverer = "Bishop, Dave",
                 InitialDescription = "The first issue ever created.",
                 Component = "FormMain",

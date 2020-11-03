@@ -27,7 +27,7 @@ namespace P5
         
         private void FormModifyIssue_Load(object sender, EventArgs e)
         {
-
+            dateTimediscovery.MaxDate = DateTime.Now;
             //populates the options for the drop downs
             foreach (AppUser appUser in userRepository.GetAll())
             {
@@ -44,6 +44,7 @@ namespace P5
             textBoxid.Text = Convert.ToString(issue.Id);
             textBoxtitle.Text = Convert.ToString(issue.Title);
             dateTimediscovery.Value = issue.DiscoveryDate;
+            dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
             comboBoxdiscoverer.SelectedItem = issue.Discoverer;
             textBoxcomponent.Text = issue.Component;
             comboBoxstatus.Text = issueStatusRepository.GetValueById(issue.IssueStatusId);

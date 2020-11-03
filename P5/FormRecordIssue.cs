@@ -25,9 +25,12 @@ namespace P5
 
         private void FormRecordIssue_Load(object sender, EventArgs e)
         {
+            dateTimediscovery.MaxDate = DateTime.Now;
             dateTimediscovery.Value = DateTime.Now;
             dateTimediscovery.Format = DateTimePickerFormat.Custom;
             dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
+
+            int newId = 1;
 
             foreach (AppUser appUser in userRepository.GetAll())
             {
@@ -38,13 +41,26 @@ namespace P5
             {
                 comboBoxstatus.Items.Add(issueStatus.Value);
             }
+
+            foreach (Issue issue in issueRepository.GetAll(_SelectedProjectId))
+            {
+                newId++;
+            }
             this.CenterToScreen();
+
+            textBoxid.Text = newId.ToString();
         }
 
         private void CreateIssueButton_Click(object sender, EventArgs e)
         {
+            int newissueId = 1;
+            foreach (Issue issueId in issueRepository.GetAll(_SelectedProjectId))
+            {
+                newissueId++;
+            }
+
             Issue issue = new Issue();
-            issue.Id = 0;
+            issue.Id = newissueId;
             issue.Title = textBoxtitle.Text.Trim();
             issue.DiscoveryDate = DateTime.Parse(dateTimediscovery.Text);
             issue.Discoverer = comboBoxdiscoverer.Text;
@@ -54,6 +70,7 @@ namespace P5
             FakePreferenceRepository preferenceRepository = new FakePreferenceRepository();
             _SelectedProjectId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
             issue.ProjectId = _SelectedProjectId;
+
 
             string result = issueRepository.Add(issue);
             if (result == FakeIssueRepository.NO_ERROR)
