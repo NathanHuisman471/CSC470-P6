@@ -33,7 +33,7 @@
             this.textBoxtitle = new System.Windows.Forms.TextBox();
             this.comboBoxstatus = new System.Windows.Forms.ComboBox();
             this.comboBoxdiscoverer = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ButtonModifyIssue = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -87,15 +87,15 @@
             this.comboBoxdiscoverer.Size = new System.Drawing.Size(289, 21);
             this.comboBoxdiscoverer.TabIndex = 27;
             // 
-            // button2
+            // ButtonModifyIssue
             // 
-            this.button2.Location = new System.Drawing.Point(329, 443);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Modify Issue";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.ButtonModifyIssue.Location = new System.Drawing.Point(329, 443);
+            this.ButtonModifyIssue.Name = "ButtonModifyIssue";
+            this.ButtonModifyIssue.Size = new System.Drawing.Size(75, 23);
+            this.ButtonModifyIssue.TabIndex = 24;
+            this.ButtonModifyIssue.Text = "Modify Issue";
+            this.ButtonModifyIssue.UseVisualStyleBackColor = true;
+            this.ButtonModifyIssue.Click += new System.EventHandler(this.ButtonModifyIssue_click);
             // 
             // button1
             // 
@@ -200,7 +200,7 @@
             this.Controls.Add(this.textBoxtitle);
             this.Controls.Add(this.comboBoxstatus);
             this.Controls.Add(this.comboBoxdiscoverer);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ButtonModifyIssue);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -224,7 +224,7 @@
         private System.Windows.Forms.TextBox textBoxtitle;
         private System.Windows.Forms.ComboBox comboBoxstatus;
         private System.Windows.Forms.ComboBox comboBoxdiscoverer;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ButtonModifyIssue;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;

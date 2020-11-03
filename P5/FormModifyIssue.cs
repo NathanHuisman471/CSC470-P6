@@ -27,7 +27,8 @@ namespace P5
         
         private void FormModifyIssue_Load(object sender, EventArgs e)
         {
-               
+
+            //populates the options for the drop downs
             foreach (AppUser appUser in userRepository.GetAll())
             {
                 comboBoxdiscoverer.Items.Add(appUser.LastName + ", " + appUser.FirstName);
@@ -38,11 +39,21 @@ namespace P5
                 comboBoxstatus.Items.Add(issueStatus.Value);
             }
 
+            //set initial values from selected issue
+            Issue issue = issueRepository.GetIssueById(_SelectedIssueId);
+            textBoxid.Text = Convert.ToString(issue.Id);
+            textBoxtitle.Text = Convert.ToString(issue.Title);
+            dateTimediscovery.Value = issue.DiscoveryDate;
+            comboBoxdiscoverer.SelectedItem = issue.Discoverer;
+            textBoxcomponent.Text = issue.Component;
+            comboBoxstatus.Text = issueStatusRepository.GetValueById(issue.IssueStatusId);
+            textBoxdescription.Text = issue.InitialDescription;
+
             this.CenterToScreen();
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ButtonModifyIssue_click(object sender, EventArgs e)
         {
             //int newId = Int32.Parse(textBoxid.Text); is this needed? I'm not sure if we are supposed to modify the id. It is greyed out in the example
             string newIssueTitle = textBoxtitle.Text.Trim();
@@ -51,7 +62,7 @@ namespace P5
             string newDescription = textBoxdescription.Text.Trim();
             int newStatusId = issueStatusRepository.GetIdByStatus(comboBoxstatus.Text);
             DateTime newDate = dateTimediscovery.Value;
-            _SelectedIssueId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
+            //_SelectedIssueId = Convert.ToInt32(preferenceRepository.GetPreference(_CurrentAppUser.UserName, FakePreferenceRepository.PREFERENCE_PROJECT_ID));
 
             if(newIssueTitle == "")
             {
@@ -60,7 +71,7 @@ namespace P5
             }
             FakeIssueRepository issueRepository = new FakeIssueRepository();
             
-            Issue issue = new Issue { ProjectId = _SelectedIssueId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
+            Issue issue = new Issue { Id = _SelectedIssueId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
             string result = issueRepository.Modify(issue);
             if (result != FakeIssueRepository.NO_ERROR)
             {

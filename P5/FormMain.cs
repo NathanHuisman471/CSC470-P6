@@ -108,7 +108,7 @@ namespace P5
             if (result == DialogResult.OK)
             {
                 int selectedIssueId = form._SelectedIssueId;
-                FormModifyIssue modifyIssue = new FormModifyIssue()
+                FormModifyIssue modifyIssue = new FormModifyIssue(selectedIssueId);
             }
 
             form.Dispose();

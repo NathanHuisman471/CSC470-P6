@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace P5
 {
@@ -23,7 +24,7 @@ namespace P5
                 Id = 1,
                 ProjectId = 1,
                 Title = "First Issue",
-                DiscoveryDate = DateTime.MinValue,
+                DiscoveryDate = new DateTime(2020, 2, 1, 9, 30, 34), //I modified these because displaying the min and max value is very difficult in a dateTime box
                 Discoverer = "Bishop, Dave",
                 InitialDescription = "The first issue ever created.",
                 Component = "FormMain",
@@ -34,7 +35,7 @@ namespace P5
                 Id = 2,
                 ProjectId = 1,
                 Title = "Minor Problem",
-                DiscoveryDate = DateTime.MaxValue,
+                DiscoveryDate = new DateTime(2020, 2, 15, 6, 44, 01),
                 Discoverer = "Bishop, Dave",
                 InitialDescription = "This is a minor issue.",
                 Component = "FormCreateProject",
@@ -55,9 +56,39 @@ namespace P5
         }
         private string ValidateIssue(Issue issue)
         {
-            //The following are placeholders for testing and running purposes
-            string a = "";
-            return a;
+            string newIssueName = issue.Title.Trim();
+            bool aModifiedIssueCanHaveTheSameNameAsItself = false;
+            if (IsDupliclate(newIssueName))
+            {
+                foreach(Issue issue1 in _Issues)
+                {
+                    if(issue.Id == issue1.Id) //this checks to see if Id already exists in _issues. if it does, that means it must be trying to modify
+                    {
+                        aModifiedIssueCanHaveTheSameNameAsItself = true;
+                    }
+                }
+                if(aModifiedIssueCanHaveTheSameNameAsItself == false)
+                {
+                    return "Issue name already exists";
+                }
+            }
+            if (newIssueName == "")
+            {
+                return EMPTY_TITLE_ERROR;
+            }
+            if (issue.Discoverer == "")
+            {
+                return EMPTY_DISCOVERER_ERROR;
+            }
+            if (issue.DiscoveryDate == null)
+            {
+                return EMPTY_DISCOVERY_DATETIME_ERROR;
+            }
+            if (issue.DiscoveryDate > DateTime.Now)
+            {
+                return FUTURE_DISCOVERY_DATETIME_ERROR;
+            }
+            return NO_ERROR;
         }
         private bool IsDupliclate(string title)
         {
@@ -74,49 +105,36 @@ namespace P5
 
         public string Add(Issue issue)
         {
-            //int Id = issue.Id;
-            string newIssueName = issue.Title.Trim();
-            if (IsDupliclate(newIssueName))
+            string validate = ValidateIssue(issue);
+            if(validate == NO_ERROR)
             {
-                return "Issue name already exists";
-            }
-            if (newIssueName == "")
-            {
-                return EMPTY_TITLE_ERROR;
-            }
-            if(issue.Discoverer == "")
-            {
-                return EMPTY_DISCOVERER_ERROR;
-            }
-            if(issue.DiscoveryDate == null)
-            {
-                return EMPTY_DISCOVERY_DATETIME_ERROR;
-            }
-            if(issue.DiscoveryDate > DateTime.Now)
-            {
-                return FUTURE_DISCOVERY_DATETIME_ERROR;
-            }
-            int currentMaxId = 0;
-            foreach(Issue l in _Issues)
-            {
-                currentMaxId = l.Id;
-            }
-            ++currentMaxId;
+                int currentMaxId = 0;
+                foreach (Issue l in _Issues)
+                {
+                    currentMaxId = l.Id;
+                }
+                ++currentMaxId;
 
-            _Issues = new List<Issue>();
-            _Issues.Add(new Issue
-            {
-                Id = currentMaxId,
-                ProjectId = issue.ProjectId,
-                Title = issue.Title,
-                DiscoveryDate = issue.DiscoveryDate,
-                Discoverer = issue.Discoverer,
-                InitialDescription = issue.InitialDescription,
-                Component = issue.Component,
-                IssueStatusId = issue.IssueStatusId
-            });
+                _Issues = new List<Issue>();
+                _Issues.Add(new Issue
+                {
+                    Id = currentMaxId,
+                    ProjectId = issue.ProjectId,
+                    Title = issue.Title,
+                    DiscoveryDate = issue.DiscoveryDate,
+                    Discoverer = issue.Discoverer,
+                    InitialDescription = issue.InitialDescription,
+                    Component = issue.Component,
+                    IssueStatusId = issue.IssueStatusId
+                });
 
-            return NO_ERROR;
+                return NO_ERROR;
+            }
+            else
+            {
+                return validate;
+            }
+            
         }
 
         public List<Issue> GetAll(int ProjectId)
@@ -131,32 +149,25 @@ namespace P5
 
         public string Modify(Issue issue)
         {
-            if (IsDupliclate(issue.Title))
+            string validate = ValidateIssue(issue);
+            if(validate == NO_ERROR)
             {
-                return "There is already an issue with this title.";
-            }
-            if(issue.Title.Trim() == "")
-            {
-                return EMPTY_TITLE_ERROR;
-            }
-            if(issue.Discoverer.Trim() == "")
-            {
-                return EMPTY_DISCOVERER_ERROR;
-            }
-            // Must also add an if statement for an empty discovery date
-
-            int index = 0;
-            foreach (Issue i in _Issues)
-            {
-                if(i.Id == issue.Id)
+                int index = 0;
+                foreach (Issue i in _Issues)
                 {
-                    _Issues[index] = issue;
-                    return NO_ERROR;
+                    if (i.Id == issue.Id)
+                    {
+                        _Issues[index] = issue;
+                        return NO_ERROR;
+                    }
+                    index++;
                 }
-                index++;
+                return NO_ERROR;
             }
-            return "No issue found.";
-
+            else
+            {
+                return validate;
+            }
         }
 
         public int GetTotalNumberOfIssues(int ProjectId)
@@ -186,12 +197,14 @@ namespace P5
         public Issue GetIssueById(int Id)
         {
             List<Issue> issuesById = new List<Issue>();
+            int index = 0;
             foreach (Issue issue in _Issues)
             {
-                if (issue.ProjectId == Id)
+                if (issue.Id == Id)
                 {
-                    return _Issues.FirstOrDefault(z => z.Id == Id); 
+                    return _Issues[index];
                 }
+                index++;
             }
             return null; //probably should check if null on the caller
         }
