@@ -195,7 +195,7 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            _Issues.Sort((x, y) => DateTime.Compare(x.DiscoveryDate, y.DiscoveryDate));
+            _Issues.Sort((x, y) => x.DiscoveryDate.Month.CompareTo(y.DiscoveryDate.Month));
             var retList = new List<string>();
             foreach(Issue issue in _Issues)
             {

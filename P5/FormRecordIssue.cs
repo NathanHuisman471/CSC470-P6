@@ -26,7 +26,7 @@ namespace P5
         private void FormRecordIssue_Load(object sender, EventArgs e)
         {
             dateTimediscovery.MaxDate = DateTime.Now;
-            dateTimediscovery.Value = DateTime.Now;
+            dateTimediscovery.Value = DateTime.Today;
             dateTimediscovery.Format = DateTimePickerFormat.Custom;
             dateTimediscovery.CustomFormat = "hh:mm:ss tt dd MMM yyyy";
 
