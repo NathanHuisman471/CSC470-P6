@@ -19,6 +19,7 @@ namespace P5
         int previousPage;
         FakeIssueRepository _IssueRepository = new FakeIssueRepository();
         FakeIssueStatusRepository _StatusRepository = new FakeIssueStatusRepository();
+        
         public FormSelectIssue(AppUser appUser, int choice)
         {
             InitializeComponent();
@@ -36,6 +37,7 @@ namespace P5
                 string issuestatus = _StatusRepository.GetValueById(issue.IssueStatusId);
                 dataGridView1.Rows.Add(new object[] { issue.Id.ToString(), issue.Title.ToString(), issue.DiscoveryDate, issue.Discoverer.ToString(), issue.InitialDescription.ToString(), issue.Component.ToString(), issuestatus });
             }
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -64,12 +66,20 @@ namespace P5
                 if( isSure == DialogResult.Yes)
                 {
                     FakeIssueRepository repository = new FakeIssueRepository();
-                    //dataGridView1.SelectedCells[1].R
-                    //Issue issue = new Issue { Id = _SelectedIssueId, Title = newIssueTitle, DiscoveryDate = newDate, Discoverer = newIssueDiscoverer, InitialDescription = newDescription, Component = newIssueComponent, IssueStatusId = newStatusId };
+                    int id = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                    string title = dataGridView1.SelectedRows[0].Cells[1].Value + string.Empty;
+                    DateTime date = Convert.ToDateTime(dataGridView1.SelectedRows[0].Cells[2].Value.ToString());
+                    string discoverer = dataGridView1.SelectedRows[0].Cells[3].Value + string.Empty;
+                    string description = dataGridView1.SelectedRows[0].Cells[4].Value + string.Empty;
+                    string component = dataGridView1.SelectedRows[0].Cells[5].Value + string.Empty;
+                    string status = dataGridView1.SelectedRows[0].Cells[6].Value + string.Empty;
+                    int issuestatus = _StatusRepository.GetIdByStatus(status);
+                    
+                    Issue issue = new Issue { Id = id, Title = title, DiscoveryDate = date, Discoverer = discoverer, InitialDescription = description, Component = component, IssueStatusId = issuestatus };
 
                     //The following code is the setup for removing the selected issue, Remove() requires an Issue so this currently does not function.
-                    /*    
-                        bool result = repository.Remove();
+                        
+                        bool result = repository.Remove(issue);
                         if(result == true)
                         {
                             MessageBox.Show("Issue removed.", "Information");
@@ -78,7 +88,7 @@ namespace P5
                         {
                             MessageBox.Show("Error removing issue " + issue.Title, "Information");
                         }
-                    */
+                    
                     Close();
                 }
                 if( isSure == DialogResult.No)

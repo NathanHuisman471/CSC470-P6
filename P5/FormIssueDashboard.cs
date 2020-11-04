@@ -21,10 +21,19 @@ namespace P5
         {
             this.CenterToScreen();
             labelissues.Text = Convert.ToString(_IssueRepository.GetTotalNumberOfIssues(_SelectedProjectId));
-            
+            foreach (string issues in _IssueRepository.GetIssuesByMonth(_SelectedProjectId))
+            {
+                listBox1.Items.Add(issues);
+            }
+            foreach (string discoverer in _IssueRepository.GetIssuesByDiscoverer(_SelectedProjectId))
+            {
+                listBox2.Items.Add(discoverer);
+            }
         }
 
-        
-
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

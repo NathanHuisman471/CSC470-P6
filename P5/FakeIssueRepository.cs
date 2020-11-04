@@ -144,7 +144,17 @@ namespace P5
 
         public bool Remove(Issue issue)
         {
-            throw new System.NotImplementedException();
+            int index = 0;
+            foreach (Issue issues in _Issues)
+            {
+                if(issue.Id == issues.Id && issue.Title == issues.Title)
+                {
+                    _Issues.RemoveAt(index);
+                    return true;
+                }
+                index++;
+            }
+            return false;
         }
 
         public string Modify(Issue issue)
@@ -185,13 +195,25 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            throw new System.NotImplementedException();
+            _Issues.Sort((x, y) => DateTime.Compare(x.DiscoveryDate, y.DiscoveryDate));
+            var retList = new List<string>();
+            foreach(Issue issue in _Issues)
+            {
+                retList.Add(issue.DiscoveryDate.ToString());
+            }
+            return retList;
 
         }
 
         public List<string> GetIssuesByDiscoverer(int ProjectId)
         {
-            throw new System.NotImplementedException();
+            _Issues.Sort((x, y) => string.Compare(x.Discoverer, y.Discoverer));
+            var retList = new List<string>();
+            foreach (Issue issue in _Issues)
+            {
+                retList.Add(issue.Discoverer);
+            }
+            return retList;
         }
 
         public Issue GetIssueById(int Id)
