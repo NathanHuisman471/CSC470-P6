@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace P5
@@ -21,14 +23,28 @@ namespace P5
         {
             this.CenterToScreen();
             labelissues.Text = Convert.ToString(_IssueRepository.GetTotalNumberOfIssues(_SelectedProjectId));
+            int numberofissues = Convert.ToInt32(_IssueRepository.GetTotalNumberOfIssues(_SelectedProjectId));
             foreach (string issues in _IssueRepository.GetIssuesByMonth(_SelectedProjectId))
             {
                 listBox1.Items.Add(issues);
             }
+
+            /*
+            for (int i = 0; i < numberofissues; i++)
+            {
+                _IssueRepository.GetIssueById(i);
+            }
+            */
             foreach (string discoverer in _IssueRepository.GetIssuesByDiscoverer(_SelectedProjectId))
             {
-                listBox2.Items.Add(discoverer);
+                string checkitem = discoverer;
+                int count = discoverer.Count();
+                if (listBox2.Items.Contains(checkitem) == false)
+                {
+                    listBox2.Items.Add(discoverer + ": " + numberofissues);
+                }
             }
+
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)

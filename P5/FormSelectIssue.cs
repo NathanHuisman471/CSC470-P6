@@ -62,7 +62,7 @@ namespace P5
             if (previousPage == 2)
             {
                 this.Hide();
-                DialogResult isSure = MessageBox.Show("Are you sure you want to remove: ", "Confirmation", MessageBoxButtons.YesNo);
+                DialogResult isSure = MessageBox.Show("Are you sure you want to remove: " + dataGridView1.SelectedRows[0].Cells[1].Value.ToString(), "Confirmation", MessageBoxButtons.YesNo);
                 if( isSure == DialogResult.Yes)
                 {
                     FakeIssueRepository repository = new FakeIssueRepository();
@@ -77,7 +77,6 @@ namespace P5
                     
                     Issue issue = new Issue { Id = id, Title = title, DiscoveryDate = date, Discoverer = discoverer, InitialDescription = description, Component = component, IssueStatusId = issuestatus };
 
-                    //The following code is the setup for removing the selected issue, Remove() requires an Issue so this currently does not function.
                         
                         bool result = repository.Remove(issue);
                         if(result == true)
