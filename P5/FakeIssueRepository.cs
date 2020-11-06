@@ -104,15 +104,19 @@ namespace P5
             return isDuplicate;
         }
 
+
         public string Add(Issue issue)
         {
             string validate = ValidateIssue(issue);
-            if(validate == NO_ERROR)
+            int currentMaxId = 0;
+            if (validate == NO_ERROR)
             {
-                int currentMaxId = 0;
                 foreach (Issue l in _Issues)
                 {
-                    currentMaxId = l.Id;
+                    if(l.Id > currentMaxId)
+                    {
+                        currentMaxId = l.Id;
+                    }
                 }
                 ++currentMaxId;
 
@@ -140,6 +144,7 @@ namespace P5
 
         public List<Issue> GetAll(int ProjectId)
         {
+            _Issues.OrderBy(sort => sort.Id);
             return _Issues;
         }
 
@@ -196,14 +201,15 @@ namespace P5
 
         public List<string> GetIssuesByMonth(int ProjectId)
         {
-            _Issues.Sort((x, y) => x.DiscoveryDate.Month.CompareTo(y.DiscoveryDate.Month));
-            var retList = new List<string>();
-            foreach(Issue issue in _Issues)
+            List<string> issuesByMonth = new List<string>();
+            foreach (Issue i in _Issues)
             {
-                retList.Add(issue.DiscoveryDate.ToString());
+                if (i.ProjectId == ProjectId)
+                {
+                    issuesByMonth.Add(i.DiscoveryDate.Year.ToString() + i.DiscoveryDate.Month.ToString());
+                }
             }
-            return retList;
-
+            return issuesByMonth;
         }
 
         public List<string> GetIssuesByDiscoverer(int ProjectId)

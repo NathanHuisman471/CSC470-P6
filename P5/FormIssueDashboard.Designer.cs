@@ -32,8 +32,8 @@
             this.labelissues = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxIssuesByMonth = new System.Windows.Forms.ListBox();
+            this.listBoxIssuesByDiscoverer = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -73,22 +73,22 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Issues by Discoverer";
             // 
-            // listBox1
+            // listBoxIssuesByMonth
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(38, 97);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(198, 108);
-            this.listBox1.TabIndex = 4;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxIssuesByMonth.FormattingEnabled = true;
+            this.listBoxIssuesByMonth.Location = new System.Drawing.Point(38, 97);
+            this.listBoxIssuesByMonth.Name = "listBoxIssuesByMonth";
+            this.listBoxIssuesByMonth.Size = new System.Drawing.Size(198, 108);
+            this.listBoxIssuesByMonth.TabIndex = 4;
+            this.listBoxIssuesByMonth.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // listBox2
+            // listBoxIssuesByDiscoverer
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(38, 244);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(198, 108);
-            this.listBox2.TabIndex = 5;
+            this.listBoxIssuesByDiscoverer.FormattingEnabled = true;
+            this.listBoxIssuesByDiscoverer.Location = new System.Drawing.Point(38, 244);
+            this.listBoxIssuesByDiscoverer.Name = "listBoxIssuesByDiscoverer";
+            this.listBoxIssuesByDiscoverer.Size = new System.Drawing.Size(198, 108);
+            this.listBoxIssuesByDiscoverer.TabIndex = 5;
             // 
             // button1
             // 
@@ -106,8 +106,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(290, 435);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxIssuesByDiscoverer);
+            this.Controls.Add(this.listBoxIssuesByMonth);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.labelissues);
@@ -126,8 +126,8 @@
         private System.Windows.Forms.Label labelissues;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxIssuesByMonth;
+        private System.Windows.Forms.ListBox listBoxIssuesByDiscoverer;
         private System.Windows.Forms.Button button1;
     }
 }

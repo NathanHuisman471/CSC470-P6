@@ -56,8 +56,12 @@ namespace P5
             int newissueId = 1;
             foreach (Issue issueId in issueRepository.GetAll(_SelectedProjectId))
             {
-                newissueId++;
+                if(issueId.Id > newissueId)
+                {
+                    newissueId = issueId.Id;
+                }               
             }
+            newissueId++;
 
             Issue issue = new Issue();
             issue.Id = newissueId;
